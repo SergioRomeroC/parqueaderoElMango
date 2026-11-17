@@ -1,0 +1,676 @@
+/* =========================================================
+   PARQUEADERO EL MANGO — Festival del Mango · El Triunfo
+   Paleta tomada del logo: naranja, amarillo, verde y negro
+   ========================================================= */
+
+:root{
+    --naranja:#ff8a00;
+    --amarillo:#ffd400;
+    --rojo:#ff4b1f;
+    --verde:#2fbf3a;
+    --morado:#8338ec;
+
+    --bg:#fff6e3;
+    --bg-2:#ffeccb;
+    --card:#ffffff;
+    --texto:#1d1d22;
+    --suave:#6b6b76;
+    --borde:#f1dfb9;
+    --fila:#fffaf0;
+    --sombra:0 10px 30px rgba(120,70,0,.15);
+    --grad:linear-gradient(135deg,var(--amarillo),var(--naranja) 55%,var(--rojo));
+}
+
+[data-theme="dark"]{
+    --bg:#0b0b10;
+    --bg-2:#14141c;
+    --card:#17171f;
+    --texto:#f4f4f7;
+    --suave:#9a9aa8;
+    --borde:#2a2a36;
+    --fila:#1c1c26;
+    --sombra:0 10px 30px rgba(0,0,0,.55);
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+    margin:0;
+    font-family:'Poppins','Segoe UI',Arial,sans-serif;
+    color:var(--texto);
+    background:
+        radial-gradient(circle at 10% -10%,rgba(255,138,0,.25),transparent 40%),
+        radial-gradient(circle at 100% 0%,rgba(47,191,58,.18),transparent 35%),
+        var(--bg);
+    background-attachment:fixed;
+    min-height:100vh;
+    transition:background .3s,color .3s;
+}
+
+h1,h2,h3{
+    font-family:'Russo One','Poppins',sans-serif;
+    letter-spacing:.5px;
+    margin:0 0 10px;
+}
+
+/* ---------- ENCABEZADO ---------- */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 120%,rgba(255,138,0,.55),transparent 60%),
+        linear-gradient(180deg,#000 0%,#111 100%);
+    color:#fff;
+    text-align:center;
+    padding:22px 20px 26px;
+    border-bottom:5px solid transparent;
+    border-image:var(--grad) 1;
+}
+
+.hero::before,
+.hero::after{
+    content:"";
+    position:absolute;
+    top:0;bottom:0;
+    width:38%;
+    opacity:.18;
+    pointer-events:none;
+}
+.hero::before{
+    left:0;
+    background:repeating-linear-gradient(115deg,var(--naranja) 0 6px,transparent 6px 22px);
+}
+.hero::after{
+    right:0;
+    background:repeating-linear-gradient(65deg,var(--verde) 0 6px,transparent 6px 22px);
+}
+
+.hero > *{position:relative;z-index:1}
+
+.hero .logo-img{
+    width:170px;
+    max-width:55vw;
+    border-radius:50%;
+    box-shadow:0 0 0 3px rgba(255,212,0,.5),0 0 35px rgba(255,138,0,.55);
+    animation:flotar 4s ease-in-out infinite;
+}
+
+.hero.compacto .logo-img{width:92px}
+
+.hero h1{
+    font-size:clamp(24px,4vw,40px);
+    margin:10px 0 2px;
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-transform:uppercase;
+}
+
+.hero p{
+    margin:0;
+    color:#ddd;
+    font-size:15px;
+}
+
+.hero .reloj{
+    margin-top:8px;
+    font-weight:600;
+    color:var(--amarillo);
+    font-size:15px;
+}
+
+@keyframes flotar{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-6px)}
+}
+
+/* ---------- NAVEGACIÓN ---------- */
+
+.nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    padding:10px 14px;
+    background:rgba(10,10,14,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid #2b2b36;
+}
+
+.nav a,
+.nav button{
+    width:auto;
+    margin:0;
+    padding:9px 16px;
+    border-radius:999px;
+    border:1px solid #2f2f3b;
+    background:#17171f;
+    color:#eee;
+    font:600 14px 'Poppins',sans-serif;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.nav a:hover,
+.nav button:hover{
+    border-color:var(--naranja);
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+.nav a.activo{
+    background:var(--grad);
+    border-color:transparent;
+    color:#111;
+}
+
+.nav .salir{border-color:#5b2020;color:#ff8f8f}
+
+/* ---------- CONTENEDORES ---------- */
+
+.contenedor{
+    max-width:1250px;
+    margin:26px auto;
+    padding:0 18px;
+}
+
+.estrecho{max-width:620px}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--borde);
+    border-radius:20px;
+    padding:26px;
+    box-shadow:var(--sombra);
+    margin-bottom:22px;
+}
+
+.card h2{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.card.acento{
+    border-top:5px solid var(--naranja);
+}
+
+.suave{color:var(--suave)}
+
+/* ---------- FORMULARIOS ---------- */
+
+label{
+    display:block;
+    font-weight:600;
+    font-size:14px;
+    margin-top:14px;
+}
+
+input,select,button{
+    font-family:inherit;
+    font-size:15px;
+}
+
+input,select{
+    width:100%;
+    padding:13px 14px;
+    margin-top:6px;
+    border-radius:12px;
+    border:2px solid var(--borde);
+    background:var(--bg-2);
+    color:var(--texto);
+    outline:none;
+    transition:.2s;
+}
+
+input:focus,select:focus{
+    border-color:var(--naranja);
+    box-shadow:0 0 0 4px rgba(255,138,0,.2);
+}
+
+.fila-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+button.principal,
+.btn{
+    display:inline-block;
+    width:100%;
+    margin-top:20px;
+    padding:14px 18px;
+    border:none;
+    border-radius:14px;
+    background:var(--grad);
+    color:#1a1200;
+    font-weight:700;
+    font-size:16px;
+    text-align:center;
+    text-decoration:none;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(255,138,0,.4);
+    transition:.25s;
+}
+
+button.principal:hover,
+.btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.07);
+}
+
+.mensaje{
+    margin:0 0 16px;
+    padding:12px 14px;
+    border-radius:12px;
+    font-weight:600;
+    text-align:center;
+}
+.mensaje.ok{background:rgba(47,191,58,.15);color:#1f9a2a;border:1px solid rgba(47,191,58,.4)}
+.mensaje.error{background:rgba(255,75,31,.12);color:#e0320a;border:1px solid rgba(255,75,31,.4)}
+[data-theme="dark"] .mensaje.ok{color:#6be077}
+[data-theme="dark"] .mensaje.error{color:#ff8a6b}
+
+.ayuda{font-size:13px;color:var(--suave);margin-top:4px}
+
+/* ---------- BOTONES PEQUEÑOS ---------- */
+
+.btn-salida,
+.btn-eliminar,
+.btn-volver,
+.btn-reiniciar,
+.btn-ticket{
+    display:inline-block;
+    width:auto;
+    margin:2px;
+    padding:8px 13px;
+    border:none;
+    border-radius:10px;
+    color:#fff;
+    font:600 13px 'Poppins',sans-serif;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn-salida{background:var(--verde)}
+.btn-eliminar{background:#d62828}
+.btn-volver{background:var(--naranja);color:#1a1200}
+.btn-ticket{background:#2b6cff}
+.btn-reiniciar{background:var(--morado);padding:11px 16px}
+
+.btn-salida:hover,
+.btn-eliminar:hover,
+.btn-volver:hover,
+.btn-reiniciar:hover,
+.btn-ticket:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.1);
+}
+
+form.en-linea{display:inline;margin:0}
+
+/* ---------- MENÚ DE INICIO ---------- */
+
+.accesos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px;
+    margin-bottom:26px;
+}
+
+.acceso{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    padding:26px 16px;
+    border-radius:20px;
+    background:var(--card);
+    border:1px solid var(--borde);
+    color:var(--texto);
+    text-decoration:none;
+    text-align:center;
+    box-shadow:var(--sombra);
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.acceso::before{
+    content:"";
+    position:absolute;
+    inset:0 0 auto 0;
+    height:5px;
+    background:var(--grad);
+}
+
+.acceso:hover{
+    transform:translateY(-8px) rotate(-.6deg);
+    border-color:var(--naranja);
+}
+
+.acceso .icono{font-size:44px}
+.acceso strong{font-family:'Russo One',sans-serif;font-size:17px}
+.acceso span.suave{font-size:13px}
+
+/* ---------- ESTADÍSTICAS ---------- */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:18px;
+    margin-bottom:24px;
+}
+
+.card-stat{
+    position:relative;
+    overflow:hidden;
+    background:var(--card);
+    border:1px solid var(--borde);
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    box-shadow:var(--sombra);
+    transition:.3s;
+}
+
+.card-stat::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:5px;
+    background:var(--grad);
+}
+
+.card-stat:hover{transform:translateY(-8px)}
+
+.card-stat h3{
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    color:var(--suave);
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.card-stat p{
+    margin:0;
+    font-family:'Russo One',sans-serif;
+    font-size:30px;
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.card-stat small{display:block;color:var(--suave);margin-top:4px;font-size:12px}
+
+/* barra de ocupación */
+
+.ocupacion{
+    height:26px;
+    border-radius:999px;
+    background:var(--bg-2);
+    border:1px solid var(--borde);
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.ocupacion > div{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#111;
+    font-weight:700;
+    font-size:13px;
+    background:linear-gradient(90deg,var(--verde),var(--amarillo),var(--rojo));
+    background-size:100vw 100%;
+    transition:width 1s;
+    min-width:44px;
+}
+
+.graficos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:22px;
+}
+
+.grafico{
+    background:var(--card);
+    border:1px solid var(--borde);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:var(--sombra);
+}
+
+.grafico h2{text-align:center;font-size:18px}
+
+.alerta{
+    margin:0 0 22px;
+    padding:16px;
+    text-align:center;
+    border-radius:16px;
+    background:linear-gradient(90deg,#d62828,#ff4b1f);
+    color:#fff;
+    font-weight:700;
+    font-size:19px;
+    animation:pulso 1.4s infinite;
+}
+
+.alerta.aviso{
+    background:linear-gradient(90deg,#f59e0b,#ffd400);
+    color:#2a1d00;
+    animation:none;
+}
+
+@keyframes pulso{
+    0%,100%{box-shadow:0 0 0 0 rgba(255,75,31,.6)}
+    50%{box-shadow:0 0 0 14px rgba(255,75,31,0)}
+}
+
+.acciones{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:26px 0;
+}
+
+/* ---------- TABLAS ---------- */
+
+.tabla-wrap{
+    overflow-x:auto;
+    border-radius:18px;
+    border:1px solid var(--borde);
+    box-shadow:var(--sombra);
+    background:var(--card);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+}
+
+th{
+    background:var(--grad);
+    color:#1a1200;
+    font-weight:700;
+    text-align:left;
+    white-space:nowrap;
+}
+
+th,td{
+    padding:12px 14px;
+    border-bottom:1px solid var(--borde);
+}
+
+tbody tr:nth-child(even){background:var(--fila)}
+tbody tr{transition:background .2s}
+tbody tr:hover{background:rgba(255,138,0,.13)}
+
+.placa{
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:8px;
+    background:var(--amarillo);
+    border:2px solid #111;
+    color:#111;
+    font-family:'Russo One',monospace;
+    letter-spacing:1px;
+}
+
+.badge{
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+}
+.badge.dentro{background:rgba(47,191,58,.18);color:#1f9a2a}
+.badge.salio{background:rgba(120,120,140,.2);color:var(--suave)}
+[data-theme="dark"] .badge.dentro{color:#6be077}
+
+.herramientas{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.herramientas input{width:min(320px,100%);margin:0}
+
+.filtros{display:flex;gap:8px;flex-wrap:wrap}
+
+.filtros a{
+    padding:9px 16px;
+    border-radius:999px;
+    border:2px solid var(--borde);
+    color:var(--texto);
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+    background:var(--card);
+    transition:.2s;
+}
+
+.filtros a.activo,
+.filtros a:hover{
+    background:var(--grad);
+    border-color:transparent;
+    color:#1a1200;
+}
+
+.total-grande{
+    font-family:'Russo One',sans-serif;
+    font-size:38px;
+    margin:0;
+    background:var(--grad);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+/* ---------- LOGIN ---------- */
+
+.login-wrap{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-card{
+    width:100%;
+    max-width:420px;
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--borde);
+    border-radius:26px;
+    padding:30px 28px;
+    box-shadow:var(--sombra);
+    border-top:6px solid var(--naranja);
+}
+
+.login-card img{
+    width:200px;
+    max-width:70%;
+    border-radius:50%;
+    box-shadow:0 0 30px rgba(255,138,0,.5);
+}
+
+.login-card form{text-align:left}
+
+/* ---------- TICKET ---------- */
+
+.ticket{
+    max-width:380px;
+    margin:26px auto;
+    background:#fff;
+    color:#111;
+    border-radius:16px;
+    padding:22px;
+    border:2px dashed #999;
+    box-shadow:var(--sombra);
+    font-family:'Courier New',monospace;
+}
+
+.ticket .cab{text-align:center}
+.ticket .cab img{width:110px;border-radius:50%}
+.ticket h2{font-size:18px;margin:6px 0 0;font-family:'Russo One',sans-serif}
+.ticket hr{border:none;border-top:2px dashed #999;margin:14px 0}
+.ticket .linea{display:flex;justify-content:space-between;gap:10px;margin:7px 0;font-size:14px}
+.ticket .linea b{font-weight:700}
+.ticket .total{font-size:22px;font-weight:700}
+.ticket .pie{text-align:center;font-size:13px}
+.ticket .placa-grande{
+    display:block;
+    text-align:center;
+    margin:10px auto;
+    padding:6px;
+    font-family:'Russo One',monospace;
+    font-size:30px;
+    letter-spacing:3px;
+    background:var(--amarillo);
+    border:3px solid #111;
+    border-radius:10px;
+}
+
+/* ---------- PIE ---------- */
+
+.pie-pagina{
+    text-align:center;
+    padding:22px;
+    color:var(--suave);
+    font-size:13px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:640px){
+    .fila-2{grid-template-columns:1fr}
+    .nav a,.nav button{padding:8px 12px;font-size:13px}
+    .hero .logo-img{width:130px}
+    th,td{padding:10px 8px;font-size:13px}
+}
+
+/* ---------- IMPRESIÓN ---------- */
+
+@media print{
+    body{background:#fff !important;color:#000}
+    .nav,.hero,.acciones,.no-imprimir,.pie-pagina{display:none !important}
+    .ticket{border:none;box-shadow:none;margin:0 auto}
+    .card,.tabla-wrap{box-shadow:none}
+}
